@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="goods.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="miniSupport" v-if="!isChatOpen" @click="openChat">
+            <img src="../images/support-logo.svg" alt="логотип поддержки">
+        </div>
+        <div v-if="isChatOpen" class="chatWindow">
+            <div class="chatHeader">
+                <h3>Поддержка</h3>
+                <button @click="closeChat">Закрыть</button>
+            </div>
+            <div v-if="!isProblemSelected" class="problemSelector">
+                <button @click="selectProblem('Заказ')">У меня проблема по заказу</button>
+                <button @click="selectProblem('Доставка')">У меня проблема по доставке</button>
+                <button @click="selectProblem('Поддержка')">Связь с поддержкой</button>
+            </div>
+            <div class="chatMessages">
+                <div v-for="(message, index) in messages" :key="index" class="message">
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="searchingMenu">
+            <div class="logotype">
+                <a href="/main.html">
+                    <img src="../images/logotype.svg" alt="логотип">
+                </a>
+            </div>
+            <div class="searchBar">
+                <form @submit.prevent="onSearchSubmit">
+                    <input type="text" v-model="searchQuery" placeholder="Найти ресторан, блюдо или товар"
+                        class="searchInput">
+                    <button type="submit" class="searchButton">Найти ресторан</button>
+                </form>
+            </div>
+            <div class="profile">
+                <img src="../images/profile.svg" alt="профиль">
+            </div>
+        </div>
+        <div class="header">
+            <div class="movingMenu">
+                <div class="movingMenu-main">
+                    <a href="/main.html">
+                        <button class="mainBtn" :class="{ active: activeButton === 'Главная'}"
+                            v-on:click="changeStatusBtn('Главная')">Главная</button>
+                    </a>
+                </div>
+                <div class="movingMenu-dogs">
+                    <a href="/алабаи/dogs.html">
+                        <button class="dogsBtn" :class="{ active: activeButton === 'Алабаи' }"
+                            v-on:click="changeStatusBtn('Алабаи')">Алабаи</button>
+                    </a>
+                </div>
+                <div class="movingMenu-kitchen">
+                    <a href="/goods/goods.html">
+                        <button class="kitchenBtn" :class="{ active: activeButton === 'Кухня' }"
+                            v-on:click="changeStatusBtn('Кухня')">Кухня</button>
+                    </a>
+                </div>
+                <div class="movingMenu-aboutUs">
+                    <button class="aboutUsBtn" :class="{ active: activeButton === 'О нас' }"
+                        v-on:click="changeStatusBtn('О нас')">О нас</button>
+                </div>
+                <div class="movingMenu-support">
+                    <button class="supportBtn" :class="{ active: activeButton === 'Поддержка' }"
+                        v-on:click="changeStatusBtn('Поддержка')">Поддержка</button>
+                </div>
+            </div>
+            <div class="makeAnOrder">
+                <button v-on:mouseover="onHover" v-on:mouseleave="onLeave" :class="{ 'active' : isOrderActive }">Сделать
+                    заказ</button>
+            </div>
+        </div>
+        <div class="title">
+            <h1>Вы можете выбрать кулинарные направления</h1>
+        </div>
+        <div class="chooseKindOfKitchen">
+            <div class="fastFood">
+                <img src="../images/fast-food.svg" alt="Фастфуд">
+                <h2>Фастфуд</h2>
+                <span>Фастфуд – это быстрая еда, созданная для удобства 
+                    и скорости. Она включает популярные блюда, такие как бургеры, 
+                    картофель фри, пиццу и многое другое. Быстрые и сытные закуски подойдут 
+                    для перекуса на ходу или для полноценного приема пищи.</span>
+            </div>
+            <div class="russianFood">
+                <img src="../images/russian-food.svg" alt="Русская кухня">
+                <h2>Русская кухня</h2>
+                <span>Русская кухня – это сочетание сытных, ароматных блюд, которые дарят уют 
+                    и тепло. Борщ, пельмени, блины, соленья и традиционные каши – всё это 
+                    создаёт особую атмосферу и насыщает разнообразием вкусов. Настоящая 
+                    русская еда для тех, кто ценит традиции и домашний комфорт.</span>
+            </div>
+            <div class="VietnamFood">
+                <img src="../images/vietnam-food.svg" alt="Вьетнамская кухня">
+                <h2>Вьетнамская кухня</h2>
+                <span>Вьетнамская кухня – это свежесть и яркость вкусов: тонкий баланс 
+                    кисло-сладких, пряных и соленых нот. Фо, спринг-роллы, бун бо – всё это 
+                    блюда, наполненные свежими травами, рисовой лапшой и экзотическими специями. 
+                    Настоящее гастрономическое путешествие в Азию, где каждый кусочек дарит 
+                    новые впечатления.</span>
+            </div>
+            <div class="japaneseFood">
+                <img src="../images/japanese-food.svg" alt="Японская кухня">
+                <h2>Японская кухня</h2>
+                <span>Японская кухня – это гармония вкуса, красоты и простоты. Суши, роллы, 
+                    рамен и сашими поражают разнообразием и изяществом. Блюда готовятся из свежайших 
+                    ингредиентов, подчёркивая натуральные вкусы. Японская еда – это баланс и искусство, 
+                    каждый прием пищи превращающий в особый ритуал.</span>
+            </div>
+            <div class="italianFood">
+                <img src="../images/italian-food.svg" alt="Итальянская кухня">
+                <h2>Итальянская кухня</h2>
+                <span>Итальянская кухня – это страсть и тепло Средиземноморья на вашей тарелке. Пицца 
+                    с тонкой корочкой, паста с ароматными соусами, ризотто и нежная моцарелла – каждое 
+                    блюдо пропитано свежестью и богатством вкусов. Итальянская еда – это простота и любовь 
+                    к натуральным ингредиентам, превращающая каждый прием пищи в праздник.</span>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.prod.js"></script>
+    <script src="./goods.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="miniSupport" v-if="!isChatOpen" @click="openChat">
+            <img src="./images/support-logo.svg" alt="логотип поддержки">
+        </div>
+        <div v-if="isChatOpen" class="chatWindow">
+            <div class="chatHeader">
+                <h3>Поддержка</h3>
+                <button @click="closeChat">Закрыть</button>
+            </div>
+            <div v-if="!isProblemSelected" class="problemSelector">
+                <button @click="selectProblem('Заказ')">У меня проблема по заказу</button>
+                <button @click="selectProblem('Доставка')">У меня проблема по доставке</button>
+                <button @click="selectProblem('Поддержка')">Связь с поддержкой</button>
+            </div>
+            <div class="chatMessages">
+                <div v-for="(message, index) in messages" :key="index" class="message">
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="searchingMenu">
+            <div class="logotype">
+                <a href="main.html">
+                    <img src="./images/logotype.svg" alt="логотип">
+                </a>
+            </div>
+            <div class="searchBar">
+                <form @submit.prevent="onSearchSubmit">
+                    <input type="text" v-model="searchQuery" placeholder="Найти ресторан, блюдо или товар"
+                        class="searchInput">
+                    <button type="submit" class="searchButton">Найти ресторан</button>
+                </form>
+            </div>
+            <div class="profile">
+                <img src="./images/profile.svg" alt="профиль">
+            </div>
+        </div>
+        <div class="header">
+            <div class="movingMenu">
+                <div class="movingMenu-main">
+                    <a href="main.html">
+                        <button class="mainBtn" :class="{ active: activeButton === 'Главная'}"
+                            v-on:click="changeStatusBtn('Главная')">Главная</button>
+                    </a>
+                </div>
+                <div class="movingMenu-dogs">
+                    <a href="/алабаи/dogs.html">
+                        <button class="dogsBtn" :class="{ active: activeButton === 'Алабаи' }"
+                            v-on:click="changeStatusBtn('Алабаи')">Алабаи</button>
+                    </a>
+                </div>
+                <div class="movingMenu-kitchen">
+                    <a href="/goods/goods.html">
+                        <button class="kitchenBtn" :class="{ active: activeButton === 'Кухня' }"
+                            v-on:click="changeStatusBtn('Кухня')">Кухня</button>
+                    </a>
+                </div>
+                <div class="movingMenu-aboutUs">
+                    <button class="aboutUsBtn" :class="{ active: activeButton === 'О нас' }"
+                        v-on:click="changeStatusBtn('О нас')">О нас</button>
+                </div>
+                <div class="movingMenu-support">
+                    <button class="supportBtn" :class="{ active: activeButton === 'Поддержка' }"
+                        v-on:click="changeStatusBtn('Поддержка')">Поддержка</button>
+                </div>
+            </div>
+            <div class="makeAnOrder">
+                <button v-on:mouseover="onHover" v-on:mouseleave="onLeave" :class="{ 'active' : isOrderActive }">Сделать
+                    заказ</button>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        <h1>Вашу еду доставят наши алабаи</h1>
+    </div>
+    <div class="generalBackground">
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="vue.js"></script>
+</body>
+
+</html>

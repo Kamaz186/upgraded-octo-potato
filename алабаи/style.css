@@ -1,0 +1,101 @@
+.fon{
+    background-image: url(fon.png);
+}
+.chosetext{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #EBDFDF;
+}
+.dogchose{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 24px;
+}
+.Alex{
+    line-height: 30px;
+    font-size: 30px;
+    position: relative;
+    color: #CBCBCB;
+    display: grid;
+    justify-content: center;
+}
+.AlexText{
+    font-family: sans-serif;
+    line-height:24px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: white;
+    display: grid;
+    justify-content: center;
+}
+.jack{
+    line-height: 30px;
+    font-size: 30px;
+    position: relative;
+    color: #CBCBCB;
+    display: grid;
+    justify-content: center;
+}
+.jackText{
+    font-family: sans-serif;
+    line-height: 24px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: white;
+    display: grid;
+    justify-content: center;
+}
+.SF{
+    line-height: 30px;
+    font-size: 30px;
+    position: relative;
+    color: #CBCBCB;
+    display: grid;
+    justify-content: center;
+}
+.SFText{
+    font-family: sans-serif;
+    line-height: 24px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: white;
+    display: grid;
+    justify-content: center;
+}
+.jonny{
+    line-height: 30px;
+    font-size: 30px;
+    position: relative;
+    color: #CBCBCB;
+    display: grid;
+    justify-content: center;
+}
+.jonnyText{
+    font-family: sans-serif;
+    line-height: 24px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: white;
+    display: grid;
+    justify-content: center;
+}
+.sam{
+    line-height: 30px;
+    font-size: 30px;
+    position: relative;
+    color: #CBCBCB;
+    display: grid;
+    justify-content: center;
+}
+.samText{
+    font-family: sans-serif;
+    line-height: 24px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: white;
+    display: grid;
+    justify-content: center;
+}
